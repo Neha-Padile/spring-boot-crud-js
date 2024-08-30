@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User CRUD</title>
+    <link rel="stylesheet" href="style.css"><!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiUrl = '/api/users';
+
+            function fetchUsers() {
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const userTableBody = document.getElementById('user-table-body');
+                        userTableBody.innerHTML = '';
+                        data.forEach(user => {
+
+                            const tr = document.createElement('tr');
+
+                            // Create table cells
+                            const nameCell = document.createElement('td');
+                            nameCell.textContent = user.name;
+
+                            const emailCell = document.createElement('td');
+                            emailCell.textContent = user.email;
+
+                            // Create action cell with buttons
+                            const actionCell = document.createElement('td');
+
+                            const updateButton = document.createElement('button');
+                            updateButton.textContent = 'Update';
+                            updateButton.classList.add('button'); // Add CSS class
+                            updateButton.addEventListener('click', () => updateUser(user.id));
+                            actionCell.appendChild(updateButton);
+
+                            // Create Delete Button
+                            const deleteButton = document.createElement('button');
+                            deleteButton.textContent = 'Delete';
+                            deleteButton.classList.add('button'); // Add CSS class
+                            deleteButton.addEventListener('click', () => deleteUser(user.id));
+                            actionCell.appendChild(deleteButton);
+
+                            // Append cells to row
+                            tr.appendChild(nameCell);
+                            tr.appendChild(emailCell);
+                            tr.appendChild(actionCell);
+
+                             // Append row to table body
+                            userTableBody.appendChild(tr);
+
+                        });
+                    });
+            }
+
+            function addUser(event) {
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                }).then(() => {
+                document.getElementById('name').value='';
+                document.getElementById('email').value='';
+                fetchUsers();
+                });
+            }
+
+            function updateUser(id) {
+                const name = prompt('New name:');
+                const email = prompt('New email:');
+
+                fetch(`${apiUrl}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                }).then(() => fetchUsers());
+            }
+
+            function deleteUser(id) {
+                fetch(`${apiUrl}/${id}`, {
+                    method: 'DELETE'
+                }).then(() => fetchUsers());
+            }
+
+            document.getElementById('add-user-form').addEventListener('submit', addUser);
+            fetchUsers();
+        });
+    </script>
+</head>
+<body>
+<h1 class="header-title">USER MANAGEMENT SYSTEM</h1>
+<form id="add-user-form" >
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <button type="submit" class="btn-add-user">Add User</button>
+
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>ACTIONS</th>
+    </tr>
+    </thead>
+    <tbody id="user-table-body"></tbody>
+</table>
+
+</body>
+</html>

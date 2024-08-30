@@ -1,0 +1,114 @@
+/* styles.css */
+
+/* Style the table */
+table {
+    width: 65%;
+    border-collapse: collapse;
+    margin: 20px auto;
+
+}
+
+thead {
+    background-color: #000000;
+
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #273746;
+    text-align: center;
+}
+
+th {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 18px;
+
+}
+
+/* Style the buttons */
+button {
+    padding: 5px 10px;
+    margin: 2px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-color: black;
+}
+
+.button {
+    background-color: #FF7F50;
+    color: #0f0e0d;
+}
+
+.button:hover {
+    background-color: #f9ebea;
+}
+
+.button.delete {
+    background-color: #dc3545;
+}
+
+.button.delete:hover {
+    background-color: #c82333;
+}
+/* style button */
+
+/* styles.css */
+
+/* Style for Add User button */
+.btn-add-user {
+    background-color: #273746; /* Green background color */
+    color: #fff;               /* White text color */
+    border: none;              /* Remove default border */
+    padding: 10px 20px;       /* Add padding */
+    border-radius: 5px;       /* Round corners */
+    cursor: pointer;           /* Change cursor on hover */
+    font-size: 12px;           /* Increase font size */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.btn-add-user:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/*styling header title*/
+
+.header-title{
+    text-align:center;
+    color: #900C3F;
+    font-size: 36px;
+    margin-top: 20px
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif; /* Ensure the font-family is applied */
+
+}
+
+/*add-user-form styling*/
+#add-user-form{
+
+    max-width:600px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color:#f9f9f9;
+}
+
+#add-user-form label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#add-user-form input[type="text"],
+#add-user-form input[type="email"] {
+    width: 80%;                 /* Full width inputs */
+    padding: 8px;                /* Padding inside inputs */
+    margin-bottom: 16px;         /* Margin below inputs */
+    border: 1px solid #ccc;      /* Border around inputs */
+    border-radius: 4px;          /* Rounded corners for inputs */
+}
+
+
