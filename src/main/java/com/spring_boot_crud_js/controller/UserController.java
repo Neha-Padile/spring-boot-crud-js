@@ -42,6 +42,12 @@ public class UserController {
         return userService.saveUser(user);
 
     }
+    @PutMapping("/{id}")
+    public User updateUserList(@PathVariable int id, @RequestBody User user){
+        user.setId(id);
+        return userService.saveUser(user);
+
+    }
 
 
 
